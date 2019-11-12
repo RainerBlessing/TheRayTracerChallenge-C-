@@ -8,7 +8,7 @@ set(PROJECT_UNIT_TESTS_NAME ${PROJECT_NAME_STR}_unit_tests)
 find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
 
 # Gather the header and source files
-file(GLOB UNIT_TESTS_INC_FILES ${PROJECT_SOURCE_DIR}/test/*.hpp)
+file(GLOB UNIT_TESTS_INC_FILES ${PROJECT_SOURCE_DIR}/test/*.hpp ${PROJECT_SOURCE_DIR}/test/*.h)
 file(GLOB UNIT_TESTS_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 # Include paths

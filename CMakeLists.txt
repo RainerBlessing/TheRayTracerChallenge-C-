@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
 # Definitions
 set(PROJECT_NAME_STR cmake_boost_demo)
@@ -7,7 +7,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 # Project title and define versioning
 project(${PROJECT_NAME_STR})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Include paths
 set(DEMO_INCLUDES ${DEMO_INCLUDES} ${PROJECT_SOURCE_DIR}/src)
@@ -35,6 +37,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 # Build
 #set(SOURCE_FILES src/main.cpp $<TARGET_OBJECTS:demo_objects>)
-set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES})
+set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES} src/shared/Tuple.cpp src/shared/Tuple.h)
 add_executable(cmake_boost_demo ${SOURCE_FILES})
 target_link_libraries(cmake_boost_demo ${Boost_LIBRARIES})
