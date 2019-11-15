@@ -13,6 +13,7 @@ public:
     enum Type {POINT=1,VECTOR=0};
     double type;
     Tuple(double x, double y, double z, double w);
+    bool equals(Tuple t);
 };
 
 

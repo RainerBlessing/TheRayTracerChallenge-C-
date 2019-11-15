@@ -37,6 +37,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 # Build
 #set(SOURCE_FILES src/main.cpp $<TARGET_OBJECTS:demo_objects>)
-set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES} src/shared/Tuple.cpp src/shared/Tuple.h)
+set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES} src/shared/Tuple.cpp src/shared/Tuple.h src/shared/Point.cpp src/shared/Point.h)
 add_executable(cmake_boost_demo ${SOURCE_FILES})
 target_link_libraries(cmake_boost_demo ${Boost_LIBRARIES})
