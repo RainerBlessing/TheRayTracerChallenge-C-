@@ -14,6 +14,16 @@ public:
     double type;
     Tuple(double x, double y, double z, double w);
     bool equals(Tuple t);
+
+    Tuple* add(Tuple tuple);
+
+    Tuple *subtract(Tuple tuple);
+
+    Tuple *negate();
+
+    Tuple *multiply(double d);
+
+    Tuple* divide(double d);
 };
 
 
