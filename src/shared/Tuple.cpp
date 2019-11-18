@@ -13,15 +13,15 @@ Tuple::Tuple(double x, double y, double z, double w) {
 }
 
 bool Tuple::equals(Tuple t) {
-    return t.x == this->x  && t.y == this->y && t.z == this->z && t.w == this->w;
+    return equal(t.x,this->x)   && equal(t.y,this->y) && equal(t.z,this->z) ;
 }
 
-Tuple* Tuple::add(Tuple tuple) {
-    new Tuple(tuple.x+this->x,tuple.y+this->y,tuple.z+this->z,tuple.w+this->w);
+Tuple Tuple::add(Tuple tuple) {
+    return Tuple(tuple.x+this->x,tuple.y+this->y,tuple.z+this->z,tuple.w+this->w);
 }
 
 Tuple* Tuple::subtract(Tuple tuple) {
-    new Tuple(tuple.x-this->x,tuple.y-this->y,tuple.z-this->z,tuple.w-this->w);
+    return new Tuple(tuple.x-this->x,tuple.y-this->y,tuple.z-this->z,tuple.w-this->w);
 }
 
 Tuple* Tuple::negate() {
@@ -35,5 +35,7 @@ Tuple* Tuple::multiply(double d) {
 Tuple* Tuple::divide(double d) {
     return new Tuple(this->x/d,this->y/d,this->z/d,this->w/d);;
 }
+
+Tuple::Tuple() {}
 
 

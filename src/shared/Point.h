@@ -7,14 +7,17 @@
 
 
 #include "Tuple.h"
-#include "../../test/Vector.h"
+#include "Vector.h"
 
 class Point : public Tuple{
 public:
     Point(double x, double y, double z);
+    Point();
     Point *subtract(Point point);
 
     Point *subtract(Vector point);
+
+    Point add(Vector tuple);
 };
 
 

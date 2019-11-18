@@ -23,7 +23,7 @@ include_directories(${UNIT_TESTS_INCLUDES})
 # Build unit tests
 add_definitions(-DBOOST_TEST_DYN_LINK)
 #add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} $<TARGET_OBJECTS:demo_objects> )
-add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} ${SRC_FILES} Vector.cpp Vector.h)
+add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} ${SRC_FILES} ../src/shared/Vector.cpp ../src/shared/Vector.h ../src/shared/Color.cpp ../src/shared/Color.h)
 target_link_libraries(${PROJECT_UNIT_TESTS_NAME} ${Boost_LIBRARIES})
 
 enable_testing()
