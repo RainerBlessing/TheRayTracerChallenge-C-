@@ -33,6 +33,10 @@ public:
     Color operator*(Color color) {
         return Color(this->x * color.x, this->y * color.y, this->z * color.z);
     }
+
+    std::string toString();
+
+    int normalize(double c);
 };
 
 

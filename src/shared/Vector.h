@@ -7,6 +7,7 @@
 
 
 #include <shared/Tuple.h>
+#include <string>
 
 class Vector : public Tuple{
 public:
