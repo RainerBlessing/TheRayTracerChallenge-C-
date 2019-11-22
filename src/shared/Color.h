@@ -34,9 +34,9 @@ public:
         return Color(this->x * color.x, this->y * color.y, this->z * color.z);
     }
 
-    std::string toString();
+    std::string toString() const;
 
-    int normalize(double c);
+    int normalize(double c) const;
 };
 
 

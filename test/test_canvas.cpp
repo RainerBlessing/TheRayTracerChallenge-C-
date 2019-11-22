@@ -6,6 +6,10 @@
 #include <shared/Color.h>
 #include <shared/Canvas.h>
 #include <iostream>
+#include <shared/Point.h>
+#include <shared/Projectile.h>
+#include <shared/Environment.h>
+#include <shared/World.h>
 
 BOOST_AUTO_TEST_SUITE(canvas_suite)
 
@@ -37,7 +41,7 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
                 "5 3\n"
                 "255\n";
 
-        BOOST_CHECK_EQUAL(ppm, c.toPPM());
+        BOOST_CHECK_EQUAL(ppm, c.header());
 
     }
 
@@ -57,9 +61,47 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
                 "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n"
                 "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255\n";
 
-        BOOST_CHECK_EQUAL(ppm, c.data());
+        BOOST_CHECK_EQUAL(ppm, c.pixelData());
 
     }
 
+    BOOST_AUTO_TEST_CASE(splitting_long_lines_in_ppm_files_test) {
+        auto c = Canvas(10, 2,Color(1,0.8,0.6));
+
+        std::string ppm =
+                "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n"
+                "153 255 204 153 255 204 153 255 204 153 255 204 153\n"
+                "255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204\n"
+                "153 255 204 153 255 204 153 255 204 153 255 204 153\n"
+                ;
+
+
+        std::cout << c.pixelData() << std::endl;
+        std::cout<<"--------------------"<<std::endl;
+        std::cout << c.pixelData().length() << std::endl;
+        std::cout<<ppm.length()<<std::endl;
+        std::cout<<"--------------------"<<std::endl;
+        std::cout<<ppm<<std::endl;
+        std::cout<<"--------------------"<<std::endl;
+        BOOST_CHECK_EQUAL(ppm, c.pixelData());
+
+    }
+
+    BOOST_AUTO_TEST_CASE(projectile_test) {
+        auto c = Canvas(900, 550);
+
+        auto projectile = Projectile(Point(0, 1, 0), Vector(1, 1.8, 0).normalize());
+        auto e = Environment(Vector(0, -0.1, 0), Vector(0, -0.01, 0));
+        auto w = World();
+        std::cout << "x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
+        int i=0;
+        while(projectile.position.y>0 && i++<200){
+            std::cout <<"i " << i <<"x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
+            projectile=w.tick(e, projectile);
+        }
+
+
+        BOOST_TEST(projectile.position.y<=0);
+    }
 BOOST_AUTO_TEST_SUITE_END()
 
