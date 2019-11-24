@@ -27,13 +27,15 @@ public:
     void writePixel(int x, int y, Color color);
     Color& pixelAt(int x, int y);
 
-    std::string toPPM();
-    std::string header();
-    std::string pixelData();
+    std::string toPPM() const;
+    std::string header() const;
+    std::string pixelData() const;
 
     std::string limitTo70Characters(const std::string &data) const;
 
     std::string createStringFromPixels() const;
+
+    void toFile(const char *filename) const;
 };
 
 

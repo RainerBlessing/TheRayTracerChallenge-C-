@@ -41,4 +41,7 @@ Vector Vector::add(Vector vector) {
     return Vector(Tuple::add(vector));
 }
 
+Vector Vector::multiply(double d) {
+    return Vector(this->x*d,this->y*d,this->z*d);
+}
 Vector::Vector() {}

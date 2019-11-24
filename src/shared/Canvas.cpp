@@ -3,6 +3,7 @@
 //
 
 #include <cstring>
+#include <fstream>
 #include "Canvas.h"
 
 
@@ -11,21 +12,26 @@ std::vector<Color> Canvas::getPixels() {
 }
 
 void Canvas::writePixel(int x, int y, Color color) {
-    pixels.at((width * y) + x) = color;
+
+    int position = (width * y) + x;
+
+    if (pixels.size() > position) {
+        pixels.at(position) = color;
+    }
 }
 
 Color &Canvas::pixelAt(int x, int y) {
     return pixels.at(x * y);
 }
 
-std::string Canvas::toPPM() {
+std::string Canvas::toPPM() const {
     std::string fileData = header();
-    fileData+= pixelData();
+    fileData += pixelData();
 
     return fileData;
 }
 
-std::string Canvas::pixelData() {
+std::string Canvas::pixelData() const {
 
     return limitTo70Characters(createStringFromPixels());
 }
@@ -49,24 +55,24 @@ std::string Canvas::limitTo70Characters(const std::string &data) const {
     std::string newData = std::string(data);
 
     int i = 0;
-    int j= 0;
-    int newLine=0;
+    int j = 0;
+    int newLine = 0;
     while (i < data.length()) {
-        newLine = data.find("\n",i+1);
-        i+=70;
-        if(newLine>i){
-            if(i<data.length()){
-                j=i;
-                while(data[j] != ' ' &&  j > 0){
+        newLine = data.find("\n", i + 1);
+        i += 70;
+        if (newLine > i) {
+            if (i < data.length()) {
+                j = i;
+                while (data[j] != ' ' && j > 0) {
                     j--;
                 }
-                if(j>0){
-                    newData[j]='\n';
+                if (j > 0) {
+                    newData[j] = '\n';
                 }
             }
 
-        }else{
-            i=newLine;
+        } else {
+            i = newLine;
         }
     }
     return newData;
@@ -80,10 +86,17 @@ Canvas::Canvas(int width, int height, Color color) {
 
 }
 
-std::string Canvas::header() {
+std::string Canvas::header() const {
     std::string header = "P3\n";
     header += std::to_string(width) + " " + std::to_string(height) + "\n";
     header += std::to_string(255) + "\n";
 
     return header;
+}
+
+void Canvas::toFile(const char *filename) const {
+    std::ofstream file;
+    file.open (filename);
+    file << this->toPPM();
+    file.close();
 }

@@ -27,6 +27,8 @@ public:
     bool operator==(Vector vector){
         Tuple::operator==(vector);
     }
+
+    Vector multiply(double d);
 };
 
 #endif //CMAKE_BOOST_DEMO_VECTOR_H
