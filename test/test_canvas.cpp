@@ -10,7 +10,6 @@
 #include <shared/Projectile.h>
 #include <shared/Environment.h>
 #include <shared/World.h>
-#include <fstream>
 
 BOOST_AUTO_TEST_SUITE(canvas_suite)
 

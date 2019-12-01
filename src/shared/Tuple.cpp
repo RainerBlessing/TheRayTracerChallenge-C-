@@ -36,6 +36,18 @@ Tuple* Tuple::divide(double d) {
     return new Tuple(this->x/d,this->y/d,this->z/d,this->w/d);;
 }
 
-Tuple::Tuple() {}
+Tuple::Tuple() :Tuple(4){}
+
+Tuple::Tuple(int i) {
+
+}
+
+Tuple::Tuple(double x, double y):Tuple(x,y,0) {
+
+}
+
+Tuple::Tuple(double x, double y, double z) :Tuple(x,y,z,0) {
+
+}
 
 
