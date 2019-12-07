@@ -119,4 +119,63 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         BOOST_TEST(c_c.equals(c));
     }
 
+    BOOST_AUTO_TEST_CASE(multiplying_matrix_by_tuple_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {1, 2, 3, 4};
+        a[1] = {2, 4, 4, 2};
+        a[2] = {8, 6, 4, 1};
+        a[3] = {0, 0, 0, 1};
+
+        auto b = Tuple(1, 2, 3, 1);
+
+        auto c = a.multiply(b);
+
+        auto c_c = Tuple(18, 24, 33, 1);
+
+        BOOST_TEST(c_c.equals(c));
+    }
+
+    BOOST_AUTO_TEST_CASE(multiplying_matrix_by_identity_matrix_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {0, 1, 2, 4};
+        a[1] = {1, 2, 4, 8};
+        a[2] = {2, 4, 8, 16};
+        a[3] = {4, 8, 16, 32};
+
+        auto b = Tuple(1, 2, 3, 1);
+
+        auto c = a.multiply(b);
+
+        auto c_c = Tuple(18, 24, 33, 1);
+
+        BOOST_TEST(c_c.equals(c));
+    }
+
+    BOOST_AUTO_TEST_CASE(transpose_matrix_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {0, 9, 3, 0};
+        a[1] = {9, 8, 9, 8};
+        a[2] = {1, 8, 5, 3};
+        a[3] = {0, 0, 5, 8};
+
+        auto b = Matrix(4, 4);
+
+        b[0] = {0, 9, 1, 0};
+        b[1] = {9, 8, 8, 0};
+        b[2] = {3, 0, 5, 5};
+        b[3] = {0, 8, 3, 8};
+
+        BOOST_TEST(a.transpose().equals(b));
+    }
+
+    BOOST_AUTO_TEST_CASE(transpose_identity_matrix_test){
+        auto a = Matrix::getIdentity();
+
+        BOOST_TEST(a.transpose().equals(a));
+    }
+
+
 BOOST_AUTO_TEST_SUITE_END()

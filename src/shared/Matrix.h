@@ -12,6 +12,7 @@
 class Matrix {
 
 public:
+    Matrix();
     Matrix(int n, int i);
     Tuple& operator [] (int i){return m[i];}
     Tuple operator [] (int i) const {return m[i];}
@@ -23,6 +24,12 @@ public:
     int size() const;
 
     Matrix multiply(Matrix matrix);
+
+    Tuple multiply(Tuple matrix);
+
+    Matrix transpose();
+
+    static Matrix getIdentity();
 };
 
 
