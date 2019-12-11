@@ -171,11 +171,70 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         BOOST_TEST(a.transpose().equals(b));
     }
 
-    BOOST_AUTO_TEST_CASE(transpose_identity_matrix_test){
+    BOOST_AUTO_TEST_CASE(transpose_identity_matrix_test) {
         auto a = Matrix::getIdentity();
 
         BOOST_TEST(a.transpose().equals(a));
     }
 
+
+    BOOST_AUTO_TEST_CASE(calculate_determinant_2x2_test) {
+        auto a = Matrix(2, 2);
+
+        a[0] = {1, 5};
+        a[1] = {-3, 2};
+
+
+        BOOST_CHECK_EQUAL(a.determinant(), 17);
+    }
+
+    BOOST_AUTO_TEST_CASE(submatrix_3x3_test) {
+        auto a = Matrix(3, 3);
+
+        a[0] = {1, 5, 0};
+        a[1] = {-3, 2, 7};
+        a[2] = {0, 6, -3};
+
+        auto b = Matrix(2, 2);
+
+        b[0] = {-3, 2};
+        b[1] = {0, 6};
+
+        BOOST_TEST(a.submatrix(0, 2).equals(b));
+    }
+
+    BOOST_AUTO_TEST_CASE(submatrix_4x4_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {-6, 1, 1, 6};
+        a[1] = {-8, 5, 8, 6};
+        a[2] = {-1, 0, 8, 2};
+        a[3] = {-7, 1, -1, 1};
+
+        auto b = Matrix(3, 3);
+
+        b[0] = {-6, 1, 6};
+        b[1] = {-8, 8, 6};
+        b[2] = {-7, -1, 1};
+
+        BOOST_TEST(a.submatrix(2, 1).equals(b));
+    }
+
+    BOOST_AUTO_TEST_CASE(minor_3x3_test) {
+        auto a = Matrix(3, 3);
+
+        a[0] = {3, 5, 0};
+        a[1] = {2, -1, -7};
+        a[2] = {6, -1, 5};
+
+        auto b = Matrix(2, 2);
+
+        b[0] = {-3, 2};
+        b[1] = {0, 6};
+
+        BOOST_CHECK_EQUAL(a.submatrix(1, 0).determinant(),25);
+        BOOST_CHECK_EQUAL(a.minor_(1, 0),25);
+
+    }
 
 BOOST_AUTO_TEST_SUITE_END()

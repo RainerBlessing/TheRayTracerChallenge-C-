@@ -8,7 +8,7 @@ Matrix::Matrix(int n, int i) {
     m.assign(n, Tuple(i));
 }
 
-Matrix::Matrix() : Matrix(4,4){
+Matrix::Matrix() : Matrix(4, 4) {
 }
 
 bool Matrix::equals(Matrix n) const {
@@ -76,7 +76,7 @@ Matrix Matrix::transpose() {
     return c;
 }
 
-Matrix Matrix::getIdentity(){
+Matrix Matrix::getIdentity() {
 
     Matrix a = Matrix();
 
@@ -88,3 +88,34 @@ Matrix Matrix::getIdentity(){
     return a;
 }
 
+double Matrix::determinant() {
+    return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+}
+
+Matrix Matrix::submatrix(int row, int column) {
+    unsigned long submatrixSize = m.size() - 1;
+
+    auto c = Matrix(submatrixSize, submatrixSize);
+
+    int k, l;
+    k = l = 0;
+
+    for (std::vector<int>::size_type i = 0; i < 4; i++) {
+        for (std::vector<int>::size_type j = 0; j < 4; j++) {
+            if (j != column) {
+                c[k][l] = m[i][j];
+                l++;
+            }
+
+        }
+        if (i != row)
+            k++;
+        l = 0;
+    }
+
+    return c;
+}
+
+double Matrix::minor_(int row, int column) {
+    return submatrix(row,column).determinant();
+}

@@ -30,6 +30,12 @@ public:
     Matrix transpose();
 
     static Matrix getIdentity();
+
+    double determinant();
+
+    Matrix submatrix(int row, int column);
+
+    double minor_(int row, int column);
 };
 
 
