@@ -18,14 +18,14 @@ public:
     Tuple operator [] (int i) const {return m[i];}
     bool operator == (Matrix n) const;
     std::vector<Tuple> m;
-    std::ostream& operator<< (std::ostream &out){ return  out;}
+
     bool equals(Matrix n) const;
 
     int size() const;
 
     Matrix multiply(Matrix matrix);
 
-    Tuple multiply(Tuple matrix);
+    Tuple multiply(Tuple tuple);
 
     Matrix transpose();
 
@@ -36,7 +36,13 @@ public:
     Matrix submatrix(int row, int column);
 
     double minor_(int row, int column);
-};
 
+    double cofactor(int row, int column);
+
+    bool invertible();
+
+    Matrix invert();
+
+};
 
 #endif //CMAKE_BOOST_DEMO_MATRIX_H

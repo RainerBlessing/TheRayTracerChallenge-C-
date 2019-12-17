@@ -37,6 +37,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 # Build
 #set(SOURCE_FILES src/main.cpp $<TARGET_OBJECTS:demo_objects>)
-set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES} src/shared/Tuple.cpp src/shared/Tuple.h src/shared/Point.cpp src/shared/Point.h src/shared/World.cpp src/shared/World.h src/shared/Projectile.cpp src/shared/Projectile.h src/shared/Environment.cpp src/shared/Environment.h src/shared/Matrix.cpp src/shared/Matrix.h)
+set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES} src/shared/Tuple.cpp src/shared/Tuple.h src/shared/Point.cpp src/shared/Point.h src/shared/World.cpp src/shared/World.h src/shared/Projectile.cpp src/shared/Projectile.h src/shared/Environment.cpp src/shared/Environment.h src/shared/Matrix.cpp src/shared/Matrix.h src/shared/Translation.cpp src/shared/Translation.h)
 add_executable(cmake_boost_demo ${SOURCE_FILES})
 target_link_libraries(cmake_boost_demo ${Boost_LIBRARIES})

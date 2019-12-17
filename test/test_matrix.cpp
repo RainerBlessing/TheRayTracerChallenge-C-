@@ -8,7 +8,19 @@
 #include <cmath>
 #include <shared/Matrix.h>
 
+std::ostream& operator<< (std::ostream &out, const
+Matrix& m)
+{
+    // Since operator<< is a friend of the Point class, we can access Point's members directly.
+    for (std::vector<int>::size_type i = 0; i < m.size(); i++) {
+        for (std::vector<int>::size_type j = 0; j < m.size(); j++) {
+            out << m[i][j] << " ";
+        }
+        std::endl(out);
+    }
 
+    return out; // return std::ostream so we can chain calls to operator<<
+}
 BOOST_AUTO_TEST_SUITE(matrix_suite)
 
     BOOST_AUTO_TEST_CASE(four_4_matrix_test) {
@@ -232,9 +244,85 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[0] = {-3, 2};
         b[1] = {0, 6};
 
-        BOOST_CHECK_EQUAL(a.submatrix(1, 0).determinant(),25);
-        BOOST_CHECK_EQUAL(a.minor_(1, 0),25);
+        BOOST_CHECK_EQUAL(a.submatrix(1, 0).determinant(), 25);
+        BOOST_CHECK_EQUAL(a.minor_(1, 0), 25);
 
+    }
+
+    BOOST_AUTO_TEST_CASE(cofactor_3x3_test) {
+        auto a = Matrix(3, 3);
+
+        a[0] = {3, 5, 0};
+        a[1] = {2, -1, -7};
+        a[2] = {6, -1, 5};
+
+        auto b = Matrix(2, 2);
+
+        b[0] = {-3, 2};
+        b[1] = {0, 6};
+
+        BOOST_CHECK_EQUAL(a.minor_(0, 0), -12);
+        BOOST_CHECK_EQUAL(a.cofactor(0, 0), -12);
+        BOOST_CHECK_EQUAL(a.minor_(1, 0), 25);
+        BOOST_CHECK_EQUAL(a.cofactor(1, 0), -25);
+
+    }
+
+    BOOST_AUTO_TEST_CASE(determinant_3x3_test) {
+        auto a = Matrix(3, 3);
+
+        a[0] = {1, 2, 6};
+        a[1] = {-5, 8, -4};
+        a[2] = {2, 6, 4};
+
+        BOOST_CHECK_EQUAL(a.cofactor(0, 0), 56);
+        BOOST_CHECK_EQUAL(a.cofactor(0, 1), 12);
+        BOOST_CHECK_EQUAL(a.cofactor(0, 2), -46);
+        BOOST_CHECK_EQUAL(a.determinant(), -196);
+
+
+    }
+
+    BOOST_AUTO_TEST_CASE(invertible_matrix_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {6, 4, 4, 4};
+        a[1] = {5, 5, 7, 6};
+        a[2] = {4, -9, 3, -7};
+        a[3] = {9, 1, 7, -6};
+
+        BOOST_CHECK_EQUAL(a.determinant(), -2120);
+        BOOST_TEST(a.invertible());
+    }
+
+    BOOST_AUTO_TEST_CASE(not_invertible_matrix_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {-4, 2, -2, -3};
+        a[1] = {9, 6, 2, 6};
+        a[2] = {0, -5, 1, -5};
+        a[3] = {0, 0, 0, 0};
+
+        BOOST_CHECK_EQUAL(a.determinant(), 0);
+        BOOST_TEST(a.invertible() == false);
+    }
+
+    BOOST_AUTO_TEST_CASE(invert_matrix_test) {
+        auto a = Matrix(4, 4);
+
+        a[0] = {-5, 2, 6, -8};
+        a[1] = {1, -5, 1, 8};
+        a[2] = {7, 7, -6, -7};
+        a[3] = {1, -3, 7, 4};
+
+        auto b = Matrix(4, 4);
+
+        b[0] = {0.218045, 0.451128, -0.240602, -0.0451128};
+        b[1] = {-0.808271, 1.45677, -0.443609, -0.520677};
+        b[2] = {-0.0789474, -0.223684, 0.223684, 0.197368};
+        b[3] = {-0.522556, 0.81391, -0.300752, -0.306391};
+
+        BOOST_TEST(a.invert().equals(b));
     }
 
 BOOST_AUTO_TEST_SUITE_END()

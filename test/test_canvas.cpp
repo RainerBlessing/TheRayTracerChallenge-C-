@@ -3,7 +3,7 @@
 #endif
 
 #include <boost/test/unit_test.hpp>
-#include <shared/Color.h>
+#include "shared/Color.h"
 #include <shared/Canvas.h>
 #include <iostream>
 #include <shared/Point.h>

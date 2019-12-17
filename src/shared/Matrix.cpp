@@ -16,7 +16,9 @@ bool Matrix::equals(Matrix n) const {
         return false;
 
     for (std::vector<int>::size_type i = 0; i != m.size(); i++) {
-        if (m[i] != n[i])return false;
+        if (m[i] != n[i]){
+            return false;
+        }
     }
     return true;
 
@@ -46,13 +48,13 @@ Matrix Matrix::multiply(Matrix matrix) {
     return c;
 }
 
-Tuple Matrix::multiply(Tuple matrix) {
+Tuple Matrix::multiply(Tuple tuple) {
     auto c = Tuple();
 
     for (std::vector<int>::size_type i = 0; i < 4; i++) {
         c[i] = 0;
         for (std::vector<int>::size_type j = 0; j < 4; j++) {
-            c[i] += m[i][j] * matrix[j];
+            c[i] += m[i][j] * tuple[j];
         }
 
     }
@@ -80,7 +82,7 @@ Matrix Matrix::getIdentity() {
 
     Matrix a = Matrix();
 
-    a[0] = {0, 0, 0, 0};
+    a[0] = {1, 0, 0, 0};
     a[1] = {0, 1, 0, 0};
     a[2] = {0, 0, 1, 0};
     a[3] = {0, 0, 0, 1};
@@ -89,7 +91,15 @@ Matrix Matrix::getIdentity() {
 }
 
 double Matrix::determinant() {
-    return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+    if(m.size()==2)return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+
+    double determinant=0;
+
+    for (std::vector<int>::size_type i = 0; i < m.size(); i++) {
+        determinant += m[0][i]*cofactor(0,i);
+    }
+
+    return determinant;
 }
 
 Matrix Matrix::submatrix(int row, int column) {
@@ -118,4 +128,32 @@ Matrix Matrix::submatrix(int row, int column) {
 
 double Matrix::minor_(int row, int column) {
     return submatrix(row,column).determinant();
+}
+
+double Matrix::cofactor(int row, int column) {
+    double sign=1;
+    int sum=row+column;
+    if(sum>0){
+        sign=(row+column)%2==0?1:-1;
+    }
+
+    return submatrix(row,column).determinant()*sign;
+}
+
+bool Matrix::invertible() {
+    return determinant()<0;
+}
+
+Matrix Matrix::invert() {
+    auto c = Matrix(4, 4);
+
+    for (std::vector<int>::size_type row = 0; row < m.size(); row++) {
+        for (std::vector<int>::size_type column = 0; column < m.size(); column++) {
+                c[column][row] = cofactor(row, column) / determinant() ;
+
+        }
+
+    }
+
+    return c;
 }

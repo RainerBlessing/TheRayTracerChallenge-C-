@@ -6,11 +6,11 @@
 #include <cmath>
 #include <iostream>
 
-Vector::Vector(double x, double y, double z) : Tuple(x,y,z,1){
+Vector::Vector(double x, double y, double z) : Tuple(x,y,z,0){
 
 }
 
-Vector::Vector(Tuple tuple) : Tuple(tuple.x,tuple.y,tuple.z,1){
+Vector::Vector(Tuple tuple) : Tuple(tuple.x,tuple.y,tuple.z,0){
 
 }
 

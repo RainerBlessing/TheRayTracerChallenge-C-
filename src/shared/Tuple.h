@@ -20,7 +20,9 @@ public:
     double type;
 
     Tuple(double x, double y, double z, double w);
+
     Tuple(double x, double y, double z);
+
     Tuple(double x, double y);
 
     Tuple();
@@ -53,16 +55,18 @@ public:
         return reinterpret_cast<double &>(nanl);
     }
 
-    bool operator!=(Tuple n) const{
-        if(n.x==x)return false;
-        if(n.y==y)return false;
-        if(n.z==z)return false;
-        if(n.w==w)return false;
+    bool operator!=(Tuple n) const {
+        bool unequal = true;
 
-        return true;
+        if (std::round(n.x) == std::round(x)) { unequal = false;};
+        if (std::round(n.y) == std::round(y)) { unequal = false;};
+        if (std::round(n.z) == std::round(z)) { unequal = false;};
+        if (std::round(n.w) == std::round(w)) { unequal = false;};
+
+        return unequal;
     };
 
-    bool equals(Tuple t);
+    bool equals(Tuple t) const;
 
     Tuple add(Tuple tuple);
 
@@ -74,13 +78,13 @@ public:
 
     Tuple *divide(double d);
 
-    bool equal(double a, double b) {
+    bool equal(double a, double b) const{
         return fabs(a - b) < EPSILON;
     }
 
     double EPSILON = 0.000001;
 
-    bool operator==(Tuple t) {
+    bool operator==(Tuple t) const{
         equals(t);
     }
 };

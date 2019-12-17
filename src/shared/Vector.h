@@ -6,8 +6,8 @@
 #define CMAKE_BOOST_DEMO_VECTOR_H
 
 
-#include <shared/Tuple.h>
 #include <string>
+#include "Tuple.h"
 
 class Vector : public Tuple{
 public:
@@ -24,9 +24,9 @@ public:
     double dot(Vector vector);
     Vector *cross(Vector vector);
 
-    bool operator==(Vector vector){
-        Tuple::operator==(vector);
-    }
+//    bool operator==(Vector vector) const{
+//        Tuple::operator==(vector);
+//    }
 
     Vector multiply(double d);
 };

@@ -12,7 +12,7 @@ Tuple::Tuple(double x, double y, double z, double w) {
     this->type = w;
 }
 
-bool Tuple::equals(Tuple t) {
+bool Tuple::equals(Tuple t) const {
     return equal(t.x,this->x)   && equal(t.y,this->y) && equal(t.z,this->z) ;
 }
 
