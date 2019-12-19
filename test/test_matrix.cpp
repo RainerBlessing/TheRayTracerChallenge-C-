@@ -322,7 +322,7 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[2] = {-0.0789474, -0.223684, 0.223684, 0.197368};
         b[3] = {-0.522556, 0.81391, -0.300752, -0.306391};
 
-        BOOST_TEST(a.invert().equals(b));
+        BOOST_TEST(a.inverse().equals(b));
     }
 
 BOOST_AUTO_TEST_SUITE_END()

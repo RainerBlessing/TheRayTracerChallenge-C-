@@ -144,7 +144,7 @@ bool Matrix::invertible() {
     return determinant()<0;
 }
 
-Matrix Matrix::invert() {
+Matrix Matrix::inverse() {
     auto c = Matrix(4, 4);
 
     for (std::vector<int>::size_type row = 0; row < m.size(); row++) {

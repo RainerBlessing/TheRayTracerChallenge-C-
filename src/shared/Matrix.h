@@ -41,7 +41,7 @@ public:
 
     bool invertible();
 
-    Matrix invert();
+    Matrix inverse();
 
 };
 
