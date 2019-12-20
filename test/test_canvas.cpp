@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
         auto w = World();
 
         int step = 0;
-        const Color &white = Color(255, 255, 0);
+        const Color &white = Color(1, 1, 1);
 
         while (projectile.position.y > 0 && step++ < 200) {
             std::cout << "step " << step << "x " << projectile.position.x << " y  " << projectile.position.y << " z "
