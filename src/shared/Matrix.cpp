@@ -3,6 +3,7 @@
 //
 
 #include "Matrix.h"
+#include "Tuple.h"
 
 Matrix::Matrix(int n, int i) {
     m.assign(n, Tuple(i));
@@ -91,6 +92,7 @@ Matrix Matrix::getIdentity() {
 }
 
 double Matrix::determinant() {
+
     if(m.size()==2)return m[0][0] * m[1][1] - m[0][1] * m[1][0];
 
     double determinant=0;
@@ -110,16 +112,19 @@ Matrix Matrix::submatrix(int row, int column) {
     int k, l;
     k = l = 0;
 
-    for (std::vector<int>::size_type i = 0; i < 4; i++) {
-        for (std::vector<int>::size_type j = 0; j < 4; j++) {
-            if (j != column) {
+    for (std::vector<int>::size_type i = 0; i < m.size(); i++) {
+        for (std::vector<int>::size_type j = 0; j < m.size(); j++) {
+            if (j != column &&i != row) {
                 c[k][l] = m[i][j];
                 l++;
             }
 
         }
-        if (i != row)
+
+        if (i != row )  {
             k++;
+        }
+
         l = 0;
     }
 
@@ -150,7 +155,6 @@ Matrix Matrix::inverse() {
     for (std::vector<int>::size_type row = 0; row < m.size(); row++) {
         for (std::vector<int>::size_type column = 0; column < m.size(); column++) {
                 c[column][row] = cofactor(row, column) / determinant() ;
-
         }
 
     }

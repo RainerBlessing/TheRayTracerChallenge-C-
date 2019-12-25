@@ -14,8 +14,8 @@ Vector::Vector(Tuple tuple) : Tuple(tuple.x,tuple.y,tuple.z,0){
 
 }
 
-Vector *Vector::subtract(Vector vector) {
-    return new Vector(this->x - vector.x, this->y - vector.y, this->z - vector.z);
+Vector Vector::subtract(Vector vector) {
+    return Vector(this->x - vector.x, this->y - vector.y, this->z - vector.z);
 }
 
 double Vector::magnitude() {
@@ -31,8 +31,8 @@ double Vector::dot(Vector vector) {
     return this->x * vector.x + this->y * vector.y + this->z * vector.z;
 }
 
-Vector *Vector::cross(Vector vector) {
-    return new Vector(this->y * vector.z - this->z * vector.y, this->z * vector.x - this->x * vector.z, this->x * vector.y - this->y * vector.x);
+Vector Vector::cross(Vector vector) {
+    return Vector(this->y * vector.z - this->z * vector.y, this->z * vector.x - this->x * vector.z, this->x * vector.y - this->y * vector.x);
 }
 
 

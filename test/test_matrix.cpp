@@ -1,5 +1,5 @@
 #ifdef STAND_ALONE
-#   define BOOST_TEST_MODULE DemoTests
+#   define BOOST_TEST_MODULE RayTracerChallengeTests
 #endif
 
 #include <boost/test/unit_test.hpp>
@@ -7,20 +7,9 @@
 #include <iostream>
 #include <cmath>
 #include <shared/Matrix.h>
+#include <shared/Output.h>
+#include <shared/Identity.h>
 
-std::ostream& operator<< (std::ostream &out, const
-Matrix& m)
-{
-    // Since operator<< is a friend of the Point class, we can access Point's members directly.
-    for (std::vector<int>::size_type i = 0; i < m.size(); i++) {
-        for (std::vector<int>::size_type j = 0; j < m.size(); j++) {
-            out << m[i][j] << " ";
-        }
-        std::endl(out);
-    }
-
-    return out; // return std::ostream so we can chain calls to operator<<
-}
 BOOST_AUTO_TEST_SUITE(matrix_suite)
 
     BOOST_AUTO_TEST_CASE(four_4_matrix_test) {
@@ -59,12 +48,13 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
 
         m[0] = {-3, 5, 0};
         m[1] = {1, -2, -7};
-        m[3] = {0, 1, 1};
+        m[2] = {0, 1, 1};
 
         BOOST_CHECK_EQUAL(m[0][0], -3);
         BOOST_CHECK_EQUAL(m[0][1], 5);
         BOOST_CHECK_EQUAL(m[1][0], 1);
         BOOST_CHECK_EQUAL(m[1][1], -2);
+        BOOST_CHECK_EQUAL(m[2][2], 1);
 
     }
 
@@ -156,13 +146,16 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         a[2] = {2, 4, 8, 16};
         a[3] = {4, 8, 16, 32};
 
-        auto b = Tuple(1, 2, 3, 1);
+        auto i = Identity();
 
-        auto c = a.multiply(b);
+        BOOST_CHECK_EQUAL(a.multiply(i), a);
+    }
 
-        auto c_c = Tuple(18, 24, 33, 1);
+    BOOST_AUTO_TEST_CASE(multiplying_identity_matrix_by_a_tuple_test) {
+        auto a = Tuple(1, 2, 3, 4);
+        auto i = Identity();
 
-        BOOST_TEST(c_c.equals(c));
+        BOOST_CHECK_EQUAL(i.multiply(a), a);
     }
 
     BOOST_AUTO_TEST_CASE(transpose_matrix_test) {
@@ -321,8 +314,9 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[1] = {-0.808271, 1.45677, -0.443609, -0.520677};
         b[2] = {-0.0789474, -0.223684, 0.223684, 0.197368};
         b[3] = {-0.522556, 0.81391, -0.300752, -0.306391};
-
+        auto i = a.inverse();
         BOOST_TEST(a.inverse().equals(b));
+        BOOST_CHECK_EQUAL(a.inverse(), b);
     }
 
 BOOST_AUTO_TEST_SUITE_END()

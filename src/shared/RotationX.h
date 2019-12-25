@@ -2,8 +2,8 @@
 // Created by rainer on 19.12.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_ROTATIONX_H
-#define CMAKE_BOOST_DEMO_ROTATIONX_H
+#ifndef RAY_TRACER_CHALLENGE_ROTATIONX_H
+#define RAY_TRACER_CHALLENGE_ROTATIONX_H
 
 
 #include "Matrix.h"
@@ -14,4 +14,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_ROTATIONX_H
+#endif //RAY_TRACER_CHALLENGE_ROTATIONX_H

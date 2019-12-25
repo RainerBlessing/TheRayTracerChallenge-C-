@@ -2,8 +2,8 @@
 // Created by rainer on 23.12.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_POSITION_H
-#define CMAKE_BOOST_DEMO_POSITION_H
+#ifndef RAY_TRACER_CHALLENGE_POSITION_H
+#define RAY_TRACER_CHALLENGE_POSITION_H
 
 
 #include "Ray.h"
@@ -15,4 +15,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_POSITION_H
+#endif //RAY_TRACER_CHALLENGE_POSITION_H

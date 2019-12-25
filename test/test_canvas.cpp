@@ -1,5 +1,5 @@
 #ifdef STAND_ALONE
-#   define BOOST_TEST_MODULE DemoTests
+#   define BOOST_TEST_MODULE RayTracerChallengeTests
 #endif
 
 #include <boost/test/unit_test.hpp>
@@ -10,6 +10,7 @@
 #include <shared/Projectile.h>
 #include <shared/Environment.h>
 #include <shared/World.h>
+#include <shared/Output.h>
 
 BOOST_AUTO_TEST_SUITE(canvas_suite)
 
@@ -29,7 +30,7 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
 
         c.writePixel(2, 3, red);
 
-        BOOST_TEST(c.pixelAt(2, 3).equals(red));
+        BOOST_CHECK_EQUAL(c.pixelAt(2, 3),red);
 
     }
 
@@ -75,13 +76,14 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
                 "153 255 204 153 255 204 153 255 204 153 255 204 153\n";
 
 
-        std::cout << c.pixelData() << std::endl;
-        std::cout << "--------------------" << std::endl;
-        std::cout << c.pixelData().length() << std::endl;
-        std::cout << ppm.length() << std::endl;
-        std::cout << "--------------------" << std::endl;
-        std::cout << ppm << std::endl;
-        std::cout << "--------------------" << std::endl;
+//        std::cout << c.pixelData() << std::endl;
+//        std::cout << "--------------------" << std::endl;
+//        std::cout << c.pixelData().length() << std::endl;
+//        std::cout << ppm.length() << std::endl;
+//        std::cout << "--------------------" << std::endl;
+//        std::cout << ppm << std::endl;
+//        std::cout << "--------------------" << std::endl;
+
         BOOST_CHECK_EQUAL(ppm, c.pixelData());
 
     }
@@ -97,8 +99,8 @@ BOOST_AUTO_TEST_SUITE(canvas_suite)
         const Color &white = Color(1, 1, 1);
 
         while (projectile.position.y > 0 && step++ < 200) {
-            std::cout << "step " << step << "x " << projectile.position.x << " y  " << projectile.position.y << " z "
-                      << projectile.position.z << std::endl;
+//            std::cout << "step " << step << "x " << projectile.position.x << " y  " << projectile.position.y << " z "
+//                      << projectile.position.z << std::endl;
 
             c.writePixel(projectile.position.x, c.height - projectile.position.y, white);
             projectile = w.tick(e, projectile);

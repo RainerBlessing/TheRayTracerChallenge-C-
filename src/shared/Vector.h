@@ -2,8 +2,8 @@
 // Created by rainer on 15.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_VECTOR_H
-#define CMAKE_BOOST_DEMO_VECTOR_H
+#ifndef RAY_TRACER_CHALLENGE_VECTOR_H
+#define RAY_TRACER_CHALLENGE_VECTOR_H
 
 
 #include <string>
@@ -18,11 +18,11 @@ public:
     Vector();
 
     Vector add(Vector tuple);
-    Vector *subtract(Vector vector);
+    Vector subtract(Vector vector);
     Vector normalize();
     double magnitude();
     double dot(Vector vector);
-    Vector *cross(Vector vector);
+    Vector cross(Vector vector);
 
 //    bool operator==(Vector vector) const{
 //        Tuple::operator==(vector);
@@ -31,4 +31,4 @@ public:
     Vector multiply(double d);
 };
 
-#endif //CMAKE_BOOST_DEMO_VECTOR_H
+#endif //RAY_TRACER_CHALLENGE_VECTOR_H

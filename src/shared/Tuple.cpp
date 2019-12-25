@@ -20,20 +20,20 @@ Tuple Tuple::add(Tuple tuple) {
     return Tuple(tuple.x+this->x,tuple.y+this->y,tuple.z+this->z,tuple.w+this->w);
 }
 
-Tuple* Tuple::subtract(Tuple tuple) {
-    return new Tuple(tuple.x-this->x,tuple.y-this->y,tuple.z-this->z,tuple.w-this->w);
+Tuple Tuple::subtract(Tuple tuple) {
+    return Tuple(tuple.x-this->x,tuple.y-this->y,tuple.z-this->z,tuple.w-this->w);
 }
 
-Tuple* Tuple::negate() {
-    return new Tuple(this->x*-1,this->y*-1,this->z*-1,this->w*-1);
+Tuple Tuple::negate() {
+    return Tuple(this->x*-1,this->y*-1,this->z*-1,this->w*-1);
 }
 
-Tuple* Tuple::multiply(double d) {
-    return new Tuple(this->x*d,this->y*d,this->z*d,this->w*d);
+Tuple Tuple::multiply(double d) {
+    return Tuple(this->x*d,this->y*d,this->z*d,this->w*d);
 }
 
-Tuple* Tuple::divide(double d) {
-    return new Tuple(this->x/d,this->y/d,this->z/d,this->w/d);;
+Tuple Tuple::divide(double d) {
+    return Tuple(this->x/d,this->y/d,this->z/d,this->w/d);;
 }
 
 Tuple::Tuple() :Tuple(4){}

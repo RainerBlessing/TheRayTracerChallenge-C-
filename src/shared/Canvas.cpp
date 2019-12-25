@@ -21,7 +21,9 @@ void Canvas::writePixel(int x, int y, Color color) {
 }
 
 Color &Canvas::pixelAt(int x, int y) {
-    return pixels.at(x * y);
+    int position = (width * y) + x;
+
+    return pixels.at(position);
 }
 
 std::string Canvas::toPPM() const {

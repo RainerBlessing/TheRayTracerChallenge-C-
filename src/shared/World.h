@@ -2,8 +2,8 @@
 // Created by rainer on 17.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_WORLD_H
-#define CMAKE_BOOST_DEMO_WORLD_H
+#ifndef RAY_TRACER_CHALLENGE_WORLD_H
+#define RAY_TRACER_CHALLENGE_WORLD_H
 
 
 #include "Projectile.h"
@@ -15,4 +15,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_WORLD_H
+#endif //RAY_TRACER_CHALLENGE_WORLD_H

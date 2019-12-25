@@ -1,5 +1,5 @@
 #ifdef STAND_ALONE
-#   define BOOST_TEST_MODULE DemoTests
+#   define BOOST_TEST_MODULE RayTracerChallengeTests
 #endif
 
 #include <boost/test/unit_test.hpp>
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_SUITE(tuple_suite)
         auto p2 = Point(5, 6, 7);
         auto c = p1.subtract(p2);
 
-        BOOST_TEST(p1.subtract(p2)->equals(Point(-2, -4, -6)));
+        BOOST_TEST(p1.subtract(p2).equals(Point(-2, -4, -6)));
     }
 
     BOOST_AUTO_TEST_CASE(vector_point_subtraction_test) {
@@ -73,45 +73,45 @@ BOOST_AUTO_TEST_SUITE(tuple_suite)
         auto p2 = Vector(5, 6, 7);
         auto c = p1.subtract(p2);
 
-        BOOST_TEST(p1.subtract(p2)->equals(Point(-2, -4, -6)));
+        BOOST_TEST(p1.subtract(p2).equals(Point(-2, -4, -6)));
     }
 
     BOOST_AUTO_TEST_CASE(vector_vector_subtraction_test) {
         auto p1 = Vector(3, 2, 1);
         auto p2 = Vector(5, 6, 7);
         auto c = p1.subtract(p2);
-        std::cout << c->x << std::endl;
-        std::cout << c->y << std::endl;
-        std::cout << c->z << std::endl;
+//        std::cout << c->x << std::endl;
+//        std::cout << c->y << std::endl;
+//        std::cout << c->z << std::endl;
 
-        BOOST_TEST(p1.subtract(p2)->equals(Vector(-2, -4, -6)));
+        BOOST_TEST(p1.subtract(p2).equals(Vector(-2, -4, -6)));
     }
 
     BOOST_AUTO_TEST_CASE(tuple_negation_test) {
         auto a = Tuple(1, -2, 3, -4);
 
-        BOOST_TEST(a.negate()->equals(Tuple(-1, 2, -3, 4)));
+        BOOST_TEST(a.negate().equals(Tuple(-1, 2, -3, 4)));
     }
 
     BOOST_AUTO_TEST_CASE(multiplying_tuple_by_scalar_test) {
         auto a = Tuple(1, -2, 3, -4);
         auto b = a.multiply(3.5);
 
-        BOOST_TEST(b->equals(Tuple(3.5, -7, 10.5, -14)));
+        BOOST_TEST(b.equals(Tuple(3.5, -7, 10.5, -14)));
     }
 
     BOOST_AUTO_TEST_CASE(multiplying_tuple_by_fraction_test) {
         auto a = Tuple(1, -2, 3, -4);
         auto b = a.multiply(0.5);
 
-        BOOST_TEST(b->equals(Tuple(0.5, -1, 1.5, -2)));
+        BOOST_TEST(b.equals(Tuple(0.5, -1, 1.5, -2)));
     }
 
     BOOST_AUTO_TEST_CASE(divide_a_tuple_by_a_scaler_test) {
         auto a = Tuple(1, -2, 3, -4);
         auto b = a.divide(2);
 
-        BOOST_TEST(b->equals(Tuple(0.5, -1, 1.5, -2)));
+        BOOST_TEST(b.equals(Tuple(0.5, -1, 1.5, -2)));
     }
 
     BOOST_AUTO_TEST_CASE(computing_the_magnitude_of_vector_1_0_0_test) {
@@ -147,17 +147,17 @@ BOOST_AUTO_TEST_SUITE(tuple_suite)
         auto b = Vector(2, 3, 4);
 
 
-        BOOST_TEST(a.cross(b)->equals(Vector(-1, 2, -1)));
+        BOOST_TEST(a.cross(b).equals(Vector(-1, 2, -1)));
     }
 
     BOOST_AUTO_TEST_CASE(projectile_test) {
         auto projectile = Projectile(Point(0, 1, 0), Vector(1, 1, 0).normalize());
         auto e = Environment(Vector(0, -0.1, 0), Vector(0, -0.01, 0));
         auto w = World();
-        std::cout << "x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
+//        std::cout << "x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
         int i=0;
         while(projectile.position.y>0 && i++<200){
-            std::cout <<"i " << i <<"x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
+//            std::cout <<"i " << i <<"x " << projectile.position.x << " y  " << projectile.position.y << " z " << projectile.position.z << std::endl;
             projectile=w.tick(e, projectile);
         }
 

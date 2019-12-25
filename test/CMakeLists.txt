@@ -8,7 +8,7 @@ set(PROJECT_UNIT_TESTS_NAME ${PROJECT_NAME_STR}_unit_tests)
 find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
 
 # Gather the header and source files
-file(GLOB UNIT_TESTS_INC_FILES ${PROJECT_SOURCE_DIR}/test/*.hpp ${PROJECT_SOURCE_DIR}/test/*.h)
+file(GLOB UNIT_TESTS_INC_FILES ${PROJECT_SOURCE_DIR}/test/*.hpp)
 file(GLOB UNIT_TESTS_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 # Include paths
@@ -22,9 +22,10 @@ include_directories(${UNIT_TESTS_INCLUDES})
 
 # Build unit tests
 add_definitions(-DBOOST_TEST_DYN_LINK)
-#add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} $<TARGET_OBJECTS:demo_objects> )
-add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} ${SRC_FILES} ../src/shared/Vector.cpp ../src/shared/Vector.h ../src/shared/Color.cpp ../src/shared/Color.h test_canvas.cpp ../src/shared/Canvas.cpp ../src/shared/Canvas.h)
+add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} ${SRC_FILES})
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fsanitize=leak -g")
 target_link_libraries(${PROJECT_UNIT_TESTS_NAME} ${Boost_LIBRARIES})
 
 enable_testing()
-add_test(DemoTest ${PROJECT_UNIT_TESTS_NAME})
+add_test(RayTracerChallengeTest ${PROJECT_UNIT_TESTS_NAME})

@@ -2,8 +2,8 @@
 // Created by rainer on 12.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_TUPLE_H
-#define CMAKE_BOOST_DEMO_TUPLE_H
+#ifndef RAY_TRACER_CHALLENGE_TUPLE_H
+#define RAY_TRACER_CHALLENGE_TUPLE_H
 
 
 #include <cmath>
@@ -70,13 +70,13 @@ public:
 
     Tuple add(Tuple tuple);
 
-    Tuple *subtract(Tuple tuple);
+    Tuple subtract(Tuple tuple);
 
-    Tuple *negate();
+    Tuple negate();
 
-    Tuple *multiply(double d);
+    Tuple multiply(double d);
 
-    Tuple *divide(double d);
+    Tuple divide(double d);
 
     bool equal(double a, double b) const{
         return fabs(a - b) < EPSILON;
@@ -90,4 +90,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_TUPLE_H
+#endif //RAY_TRACER_CHALLENGE_TUPLE_H

@@ -2,8 +2,8 @@
 // Created by rainer on 19.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_CANVAS_H
-#define CMAKE_BOOST_DEMO_CANVAS_H
+#ifndef RAY_TRACER_CHALLENGE_CANVAS_H
+#define RAY_TRACER_CHALLENGE_CANVAS_H
 
 
 #include <vector>
@@ -39,4 +39,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_CANVAS_H
+#endif //RAY_TRACER_CHALLENGE_CANVAS_H

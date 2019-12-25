@@ -2,8 +2,8 @@
 // Created by rainer on 23.12.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_RAY_H
-#define CMAKE_BOOST_DEMO_RAY_H
+#ifndef RAY_TRACER_CHALLENGE_RAY_H
+#define RAY_TRACER_CHALLENGE_RAY_H
 
 
 #include "Point.h"
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_RAY_H
+#endif //RAY_TRACER_CHALLENGE_RAY_H

@@ -2,8 +2,8 @@
 // Created by rainer on 18.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_COLOR_H
-#define CMAKE_BOOST_DEMO_COLOR_H
+#ifndef RAY_TRACER_CHALLENGE_COLOR_H
+#define RAY_TRACER_CHALLENGE_COLOR_H
 
 
 #include "Vector.h"
@@ -40,4 +40,4 @@ public:
 };
 
 
-#endif //CMAKE_BOOST_DEMO_COLOR_H
+#endif //RAY_TRACER_CHALLENGE_COLOR_H

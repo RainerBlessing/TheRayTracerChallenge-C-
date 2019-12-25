@@ -2,8 +2,8 @@
 // Created by rainer on 24.11.19.
 //
 
-#ifndef CMAKE_BOOST_DEMO_MATRIX_H
-#define CMAKE_BOOST_DEMO_MATRIX_H
+#ifndef RAY_TRACER_CHALLENGE_MATRIX_H
+#define RAY_TRACER_CHALLENGE_MATRIX_H
 
 
 #include <vector>
@@ -45,4 +45,4 @@ public:
 
 };
 
-#endif //CMAKE_BOOST_DEMO_MATRIX_H
+#endif //RAY_TRACER_CHALLENGE_MATRIX_H
