@@ -13,11 +13,14 @@ class Point : public Tuple{
 public:
     Point(double x, double y, double z);
     Point();
-    Point subtract(Point point);
+    Point subtract(Point point) const;
+    Point operator - (Point point) const;
+    Point subtract(Vector point) const;
 
-    Point subtract(Vector point);
+    Point add(Vector tuple) const;
+    Point operator + (Point point) const;
 
-    Point add(Vector tuple);
+    double dot(Point point);
 };
 
 
