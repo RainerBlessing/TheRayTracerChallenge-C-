@@ -9,7 +9,7 @@
 #include <shared/Output.h>
 #include <shared/Position.h>
 
-BOOST_AUTO_TEST_SUITE(translation_suite)
+BOOST_AUTO_TEST_SUITE(rays_suite)
 
     BOOST_AUTO_TEST_CASE(creating_and_querying_a_ray_test) {
         auto origin = Point(1, 2, 3);

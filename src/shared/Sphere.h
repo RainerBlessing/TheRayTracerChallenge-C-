@@ -7,8 +7,9 @@
 
 
 #include "Ray.h"
+#include "Object.h"
 
-class Sphere {
+class Sphere : public Object{
 
 public:
     std::vector<double> intersects(Ray ray);

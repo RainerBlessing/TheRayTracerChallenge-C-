@@ -6,6 +6,8 @@
 #include "Translation.h"
 #include "Point.h"
 #include "Color.h"
+#include "Object.h"
+#include "Sphere.h"
 
 std::ostream &operator<<(std::ostream &out, const Translation t) {
     // Since operator<< is a friend of the Point class, we can access Point's members directly.
@@ -67,4 +69,19 @@ std::ostream &operator<<(std::ostream &out, const Matrix m) {
     return out; // return std::ostream so we can chain calls to operator<<
 }
 
+std::ostream &operator<<(std::ostream &out, const Object o) {
+        out << &o << " ";
+
+    std::endl(out);
+
+    return out; // return std::ostream so we can chain calls to operator<<
+}
+
+std::ostream &operator<<(std::ostream &out, const Sphere s) {
+    out << &s << " ";
+
+    std::endl(out);
+
+    return out; // return std::ostream so we can chain calls to operator<<
+}
 #endif //RAY_TRACER_CHALLENGE_OUTPUT_H
