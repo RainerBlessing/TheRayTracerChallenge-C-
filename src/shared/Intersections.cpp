@@ -3,6 +3,7 @@
 //
 
 #include <cstdarg>
+#include <algorithm>
 #include "Intersections.h"
 #include "Intersection.h"
 
@@ -27,4 +28,20 @@ Intersections::Intersections(int num ...) {
 
 Intersection Intersections::get(int i) {
     return intersections[i];
+}
+
+std::vector<Intersection> Intersections::hit() {
+    std::sort(intersections.begin(),intersections.end(),[](const Intersection a, const Intersection b) {return a.t < b.t; });
+
+    std::vector<Intersection> hits;
+
+
+    for (auto intersection : intersections){
+        if(intersection.t>0){
+            hits.push_back(intersection);
+            break;
+        }
+    }
+
+    return hits;
 }

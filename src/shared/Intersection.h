@@ -13,7 +13,7 @@ class Intersection {
 public:
     Intersection(double t, Object object);
     Intersection();
-
+    bool operator == (Intersection i) const;
     double t;
     Object object;
 };
