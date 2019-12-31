@@ -18,6 +18,8 @@ public:
 
     Intersection get(int i);
 
+    std::vector<Intersection> hit();
+
 private:
     std::vector<Intersection> intersections;
 };

@@ -9,6 +9,10 @@
 class Object {
 public:
     bool operator == (Object o) const;
+    Object();
+private:
+    int id;
+    const int getRandomNumber() const;
 };
 
 

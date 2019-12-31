@@ -12,3 +12,7 @@ Intersection::Intersection(double t, Object object) {
 Intersection::Intersection() {
 
 }
+
+bool Intersection::operator==(Intersection i) const {
+    return i.t==this->t && i.object==this->object;
+}

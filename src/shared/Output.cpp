@@ -8,6 +8,7 @@
 #include "Color.h"
 #include "Object.h"
 #include "Sphere.h"
+#include "Intersection.h"
 
 std::ostream &operator<<(std::ostream &out, const Translation t) {
     // Since operator<< is a friend of the Point class, we can access Point's members directly.
@@ -79,6 +80,14 @@ std::ostream &operator<<(std::ostream &out, const Object o) {
 
 std::ostream &operator<<(std::ostream &out, const Sphere s) {
     out << &s << " ";
+
+    std::endl(out);
+
+    return out; // return std::ostream so we can chain calls to operator<<
+}
+
+std::ostream &operator<<(std::ostream &out, const Intersection i) {
+    out << i.t << " " << i.object;
 
     std::endl(out);
 
