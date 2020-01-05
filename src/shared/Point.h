@@ -13,6 +13,9 @@ class Point : public Tuple{
 public:
     Point(double x, double y, double z);
     Point();
+
+    Point(Tuple tuple);
+
     Point subtract(Point point) const;
     Point operator - (Point point) const;
     Point subtract(Vector point) const;

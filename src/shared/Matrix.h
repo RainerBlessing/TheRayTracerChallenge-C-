@@ -8,6 +8,7 @@
 
 #include <vector>
 #include "Tuple.h"
+#include "Point.h"
 #include <iostream>
 class Matrix {
 
@@ -26,6 +27,7 @@ public:
     Matrix multiply(Matrix matrix);
 
     Tuple multiply(Tuple tuple);
+    Point multiply(Point point);
 
     Matrix transpose();
 

@@ -19,6 +19,7 @@ Intersections::Intersections(int num ...) {
     for (int i = 0; i < num; i++) {
 
         Intersection *pIntersection = va_arg(valist, Intersection*);
+
         intersections.push_back(*pIntersection);
     }
 

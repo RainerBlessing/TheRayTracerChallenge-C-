@@ -9,6 +9,7 @@
 #include "Object.h"
 #include "Sphere.h"
 #include "Intersection.h"
+#include "Position.h"
 
 std::ostream &operator<<(std::ostream &out, const Translation t) {
     // Since operator<< is a friend of the Point class, we can access Point's members directly.
@@ -31,9 +32,9 @@ std::ostream &operator<<(std::ostream &out, const Tuple t) {
     return out; // return std::ostream so we can chain calls to operator<<
 }
 
-std::ostream &operator<<(std::ostream &out, const Point t) {
+std::ostream &operator<<(std::ostream &out, const Point p) {
     for (std::vector<int>::size_type j = 0; j < 4; j++) {
-        out << t[j] << " ";
+        out << p[j] << " ";
     }
     std::endl(out);
 
@@ -89,6 +90,15 @@ std::ostream &operator<<(std::ostream &out, const Sphere s) {
 std::ostream &operator<<(std::ostream &out, const Intersection i) {
     out << i.t << " " << i.object;
 
+    std::endl(out);
+
+    return out; // return std::ostream so we can chain calls to operator<<
+}
+
+std::ostream &operator<<(std::ostream &out, const Position p) {
+    for (std::vector<int>::size_type j = 0; j < 4; j++) {
+        out << p[j] << " ";
+    }
     std::endl(out);
 
     return out; // return std::ostream so we can chain calls to operator<<

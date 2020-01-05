@@ -63,6 +63,19 @@ Tuple Matrix::multiply(Tuple tuple) {
     return c;
 }
 
+Point Matrix::multiply(Point point) {
+    auto c = Point();
+
+    for (std::vector<int>::size_type i = 0; i < 4; i++) {
+        c[i] = 0;
+        for (std::vector<int>::size_type j = 0; j < 4; j++) {
+            c[i] += m[i][j] * point[j];
+        }
+
+    }
+
+    return c;
+}
 Matrix Matrix::transpose() {
     auto c = Matrix(4, 4);
 

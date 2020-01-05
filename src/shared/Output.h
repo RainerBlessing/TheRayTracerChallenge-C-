@@ -8,6 +8,7 @@
 #include "Object.h"
 #include "Sphere.h"
 #include "Intersection.h"
+#include "Position.h"
 
 extern std::ostream& operator << (std::ostream& os, const Translation t);
 extern std::ostream& operator << (std::ostream& os, const Tuple t);
@@ -18,5 +19,6 @@ extern std::ostream& operator << (std::ostream& os, const Color c);
 extern std::ostream& operator << (std::ostream& os, const Object o);
 extern std::ostream& operator << (std::ostream& os, const Sphere s);
 extern std::ostream& operator << (std::ostream& os, const Intersection i);
+extern std::ostream& operator << (std::ostream& os, const Position p);
 
 #endif //RAY_TRACER_CHALLENGE_OUTPUT_H

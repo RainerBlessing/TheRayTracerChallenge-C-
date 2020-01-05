@@ -13,6 +13,13 @@ class Sphere : public Object{
 
 public:
     std::vector<double> intersects(Ray ray);
+
+    Matrix transform();
+
+    void setTransform(Matrix m);
+
+private:
+    Matrix translation = Matrix::getIdentity();
 };
 
 

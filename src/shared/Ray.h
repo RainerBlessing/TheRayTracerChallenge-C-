@@ -7,6 +7,7 @@
 
 
 #include "Point.h"
+#include "Translation.h"
 
 class Ray {
 
@@ -15,6 +16,8 @@ public:
 
     Point origin;
     Vector direction;
+
+    Ray transform(Matrix m);
 };
 
 
