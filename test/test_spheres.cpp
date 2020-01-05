@@ -117,12 +117,12 @@ BOOST_AUTO_TEST_SUITE(spheres_suite)
     }
 
     void createSphereImage(Canvas &canvas, const Color &color, Sphere &sphere,
-                           const char *filename)  {
+                           const char *filename) {
         auto canvas_pixels = canvas.width;
 
         auto wall_z = 10;
         auto wall_size = 7.0;
-        auto pixel_size = wall_size / (double)canvas_pixels;
+        auto pixel_size = wall_size / (double) canvas_pixels;
         auto half = wall_size / 2;
 
         auto ray_origin = Point(0, 0, -5);
@@ -134,12 +134,12 @@ BOOST_AUTO_TEST_SUITE(spheres_suite)
                 auto position = Point(world_x, world_y, wall_z);
                 auto r = Ray(ray_origin, Vector(position.subtract(ray_origin)).normalize());
 
-                auto xs=sphere.intersects(r);
-                if(x%10==0 && y%10==0){
-                    std::cout <<" "<< x << " " << y << std::endl;
+                auto xs = sphere.intersects(r);
+                if (x % 10 == 0 && y % 10 == 0) {
+                    std::cout << " " << x << " " << y << std::endl;
                 }
 
-                if(xs.size()>0){
+                if (xs.size() > 0) {
                     canvas.writePixel(x, y, color);
                 }
             }
@@ -154,51 +154,51 @@ BOOST_AUTO_TEST_SUITE(spheres_suite)
 
         auto sphere = Sphere();
 
-        createSphereImage( c, Color(1, 0, 0), sphere, "sphere.ppm");
+        createSphereImage(c, Color(1, 0, 0), sphere, "sphere.ppm");
 
     }
 
     BOOST_AUTO_TEST_CASE(sphere_shrink_along_y_axis_test) {
-        int canvas_pixels =100;
+        int canvas_pixels = 100;
         auto c = Canvas(canvas_pixels, canvas_pixels);
 
         auto sphere = Sphere();
-        sphere.setTransform(Scaling(1,0.5,1));
+        sphere.setTransform(Scaling(1, 0.5, 1));
 
-        createSphereImage( c, Color(1, 0, 0), sphere, "sphere_shrink_y.ppm");
+        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_y.ppm");
 
     }
 
     BOOST_AUTO_TEST_CASE(sphere_shrink_along_x_axis_test) {
-        int canvas_pixels =100;
+        int canvas_pixels = 100;
         auto c = Canvas(canvas_pixels, canvas_pixels);
 
         auto sphere = Sphere();
-        sphere.setTransform(Scaling(0.5,1,1));
+        sphere.setTransform(Scaling(0.5, 1, 1));
 
-        createSphereImage( c, Color(1, 0, 0), sphere, "sphere_shrink_x.ppm");
+        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_x.ppm");
 
     }
 
     BOOST_AUTO_TEST_CASE(sphere_shrink_and_rotate_test) {
-        int canvas_pixels =100;
+        int canvas_pixels = 100;
         auto c = Canvas(canvas_pixels, canvas_pixels);
 
         auto sphere = Sphere();
-        sphere.setTransform(RotationZ(M_PI/4).multiply(Scaling(0.5,1,1)));
+        sphere.setTransform(RotationZ(M_PI / 4).multiply(Scaling(0.5, 1, 1)));
 
         createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_rotate.ppm");
 
     }
 
     BOOST_AUTO_TEST_CASE(sphere_shrink_and_skew_test) {
-        int canvas_pixels =100;
+        int canvas_pixels = 100;
         auto c = Canvas(canvas_pixels, canvas_pixels);
 
         auto sphere = Sphere();
-        sphere.setTransform(Shearing(1,0,0,0,0,0).multiply(Scaling(0.5,1,1)));
+        sphere.setTransform(Shearing(1, 0, 0, 0, 0, 0).multiply(Scaling(0.5, 1, 1)));
 
-        createSphereImage( c, Color(1, 0, 0), sphere, "sphere_shrink_and_skew.ppm");
+        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_skew.ppm");
 
     }
 
