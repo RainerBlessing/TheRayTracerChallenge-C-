@@ -7,6 +7,7 @@
 
 
 #include <cmath>
+#include "Utility.h"
 
 class Tuple {
 
@@ -56,14 +57,8 @@ public:
     }
 
     bool operator!=(Tuple n) const {
-        bool unequal = true;
-
-        if (std::round(n.x) == std::round(x)) { unequal = false;};
-        if (std::round(n.y) == std::round(y)) { unequal = false;};
-        if (std::round(n.z) == std::round(z)) { unequal = false;};
-        if (std::round(n.w) == std::round(w)) { unequal = false;};
-
-        return unequal;
+        return !(round5(n.x) == round5(x) && round5(n.y) == round5(y) && round5(n.z) == round5(z) &&
+                 round5(n.w) == round5(w));
     };
 
     bool equals(Tuple t) const;
@@ -78,13 +73,13 @@ public:
 
     Tuple divide(double d);
 
-    bool equal(double a, double b) const{
-        return fabs(a - b) < EPSILON;
+    bool equal(double a, double b) const {
+        return fabs(round5(a) - round5(b)) < EPSILON;
     }
 
     double EPSILON = 0.000001;
 
-    bool operator==(Tuple t) const{
+    bool operator==(Tuple t) const {
         equals(t);
     }
 };

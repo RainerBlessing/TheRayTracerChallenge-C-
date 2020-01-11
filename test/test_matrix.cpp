@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         auto a = Matrix(4, 4);
 
         a[0] = {0, 9, 3, 0};
-        a[1] = {9, 8, 9, 8};
+        a[1] = {9, 8, 0, 8};
         a[2] = {1, 8, 5, 3};
         a[3] = {0, 0, 5, 8};
 
@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[2] = {3, 0, 5, 5};
         b[3] = {0, 8, 3, 8};
 
-        BOOST_TEST(a.transpose().equals(b));
+        BOOST_CHECK_EQUAL(a.transpose(), b);
     }
 
     BOOST_AUTO_TEST_CASE(transpose_identity_matrix_test) {
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[0] = {-3, 2};
         b[1] = {0, 6};
 
-        BOOST_TEST(a.submatrix(0, 2).equals(b));
+        BOOST_CHECK_EQUAL(a.submatrix(0, 2), b);
     }
 
     BOOST_AUTO_TEST_CASE(submatrix_4x4_test) {
@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
         b[1] = {-8, 8, 6};
         b[2] = {-7, -1, 1};
 
-        BOOST_TEST(a.submatrix(2, 1).equals(b));
+        BOOST_CHECK_EQUAL(a.submatrix(2, 1), b);
     }
 
     BOOST_AUTO_TEST_CASE(minor_3x3_test) {
@@ -310,12 +310,11 @@ BOOST_AUTO_TEST_SUITE(matrix_suite)
 
         auto b = Matrix(4, 4);
 
-        b[0] = {0.218045, 0.451128, -0.240602, -0.0451128};
-        b[1] = {-0.808271, 1.45677, -0.443609, -0.520677};
-        b[2] = {-0.0789474, -0.223684, 0.223684, 0.197368};
-        b[3] = {-0.522556, 0.81391, -0.300752, -0.306391};
-        auto i = a.inverse();
-        BOOST_TEST(a.inverse().equals(b));
+        b[0] = {0.21805, 0.45113, 0.24060, -0.04511};
+        b[1] = {-0.80827, -1.45677, -0.44361, 0.52068};
+        b[2] = {-0.07895, -0.22368, -0.05263, 0.19737};
+        b[3] = {-0.52256, -0.81391, -0.30075, 0.30639};
+
         BOOST_CHECK_EQUAL(a.inverse(), b);
     }
 

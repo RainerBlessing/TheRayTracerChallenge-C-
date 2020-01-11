@@ -9,7 +9,7 @@
 #include "Ray.h"
 #include "Object.h"
 
-class Sphere : public Object{
+class Sphere : public Object {
 
 public:
     std::vector<double> intersects(Ray ray);
@@ -17,6 +17,8 @@ public:
     Matrix transform();
 
     void setTransform(Matrix m);
+
+    Vector normalAt(Point worldPoint);
 
 private:
     Matrix translation = Matrix::getIdentity();

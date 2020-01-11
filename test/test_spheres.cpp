@@ -148,58 +148,112 @@ BOOST_AUTO_TEST_SUITE(spheres_suite)
         canvas.toFile(filename);
     }
 
-    BOOST_AUTO_TEST_CASE(sphere_test) {
-        int canvas_pixels = 100;
-        auto c = Canvas(canvas_pixels, canvas_pixels);
+//    BOOST_AUTO_TEST_CASE(sphere_test) {
+//        int canvas_pixels = 100;
+//        auto c = Canvas(canvas_pixels, canvas_pixels);
+//
+//        auto sphere = Sphere();
+//
+//        createSphereImage(c, Color(1, 0, 0), sphere, "sphere.ppm");
+//
+//    }
+//
+//    BOOST_AUTO_TEST_CASE(sphere_shrink_along_y_axis_test) {
+//        int canvas_pixels = 100;
+//        auto c = Canvas(canvas_pixels, canvas_pixels);
+//
+//        auto sphere = Sphere();
+//        sphere.setTransform(Scaling(1, 0.5, 1));
+//
+//        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_y.ppm");
+//
+//    }
+//
+//    BOOST_AUTO_TEST_CASE(sphere_shrink_along_x_axis_test) {
+//        int canvas_pixels = 100;
+//        auto c = Canvas(canvas_pixels, canvas_pixels);
+//
+//        auto sphere = Sphere();
+//        sphere.setTransform(Scaling(0.5, 1, 1));
+//
+//        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_x.ppm");
+//
+//    }
+//
+//    BOOST_AUTO_TEST_CASE(sphere_shrink_and_rotate_test) {
+//        int canvas_pixels = 100;
+//        auto c = Canvas(canvas_pixels, canvas_pixels);
+//
+//        auto sphere = Sphere();
+//        sphere.setTransform(RotationZ(M_PI / 4).multiply(Scaling(0.5, 1, 1)));
+//
+//        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_rotate.ppm");
+//
+//    }
+//
+//    BOOST_AUTO_TEST_CASE(sphere_shrink_and_skew_test) {
+//        int canvas_pixels = 100;
+//        auto c = Canvas(canvas_pixels, canvas_pixels);
+//
+//        auto sphere = Sphere();
+//        sphere.setTransform(Shearing(1, 0, 0, 0, 0, 0).multiply(Scaling(0.5, 1, 1)));
+//
+//        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_skew.ppm");
+//
+//    }
 
-        auto sphere = Sphere();
+    BOOST_AUTO_TEST_CASE(the_normal_on_a_sphere_at_a_point_on_the_x_test) {
+        auto s = Sphere();
+        auto n = s.normalAt(Point(1, 0, 0));
 
-        createSphereImage(c, Color(1, 0, 0), sphere, "sphere.ppm");
-
+        BOOST_CHECK_EQUAL(n, Vector(1, 0, 0));
     }
 
-    BOOST_AUTO_TEST_CASE(sphere_shrink_along_y_axis_test) {
-        int canvas_pixels = 100;
-        auto c = Canvas(canvas_pixels, canvas_pixels);
+    BOOST_AUTO_TEST_CASE(the_normal_on_a_sphere_at_a_point_on_the_y_test) {
+        auto s = Sphere();
+        auto n = s.normalAt(Point(0, 1, 0));
 
-        auto sphere = Sphere();
-        sphere.setTransform(Scaling(1, 0.5, 1));
-
-        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_y.ppm");
-
+        BOOST_CHECK_EQUAL(n, Vector(0, 1, 0));
     }
 
-    BOOST_AUTO_TEST_CASE(sphere_shrink_along_x_axis_test) {
-        int canvas_pixels = 100;
-        auto c = Canvas(canvas_pixels, canvas_pixels);
+    BOOST_AUTO_TEST_CASE(the_normal_on_a_sphere_at_a_point_on_the_z_test) {
+        auto s = Sphere();
+        auto n = s.normalAt(Point(0, 0, 1));
 
-        auto sphere = Sphere();
-        sphere.setTransform(Scaling(0.5, 1, 1));
-
-        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_x.ppm");
-
+        BOOST_CHECK_EQUAL(n, Vector(0, 0, 1));
     }
 
-    BOOST_AUTO_TEST_CASE(sphere_shrink_and_rotate_test) {
-        int canvas_pixels = 100;
-        auto c = Canvas(canvas_pixels, canvas_pixels);
+    BOOST_AUTO_TEST_CASE(the_normal_on_a_sphere_at_a_nonaxial_test) {
+        auto s = Sphere();
+        auto n = s.normalAt(Point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
 
-        auto sphere = Sphere();
-        sphere.setTransform(RotationZ(M_PI / 4).multiply(Scaling(0.5, 1, 1)));
-
-        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_rotate.ppm");
-
+        BOOST_CHECK_EQUAL(n, Vector(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
     }
 
-    BOOST_AUTO_TEST_CASE(sphere_shrink_and_skew_test) {
-        int canvas_pixels = 100;
-        auto c = Canvas(canvas_pixels, canvas_pixels);
+    BOOST_AUTO_TEST_CASE(the_normal_is_a_normalized_vector_test) {
+        auto s = Sphere();
+        auto n = s.normalAt(Point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
 
-        auto sphere = Sphere();
-        sphere.setTransform(Shearing(1, 0, 0, 0, 0, 0).multiply(Scaling(0.5, 1, 1)));
+        BOOST_CHECK_EQUAL(n, n.normalize());
+    }
 
-        createSphereImage(c, Color(1, 0, 0), sphere, "sphere_shrink_and_skew.ppm");
+    BOOST_AUTO_TEST_CASE(computing_the_normal_on_a_translated_sphere_test) {
+        auto s = Sphere();
+        s.setTransform(Translation(0, 1, 0));
 
+        auto n = s.normalAt(Point(0, 1.70711, -0.70711));
+
+        BOOST_CHECK_EQUAL(n, Vector(0, 0.70711, -0.70711));
+    }
+
+    BOOST_AUTO_TEST_CASE(computing_the_normal_on_a_transformed_sphere_test) {
+        auto s = Sphere();
+        auto m = Scaling(1, 0.5, 1).multiply(RotationZ(M_PI / 5));
+        s.setTransform(m);
+
+        auto n = s.normalAt(Point(0, sqrt(2) / 2, -sqrt(2) / 2));
+
+        BOOST_CHECK_EQUAL(n, Vector(0, 0.97014, -0.24254));
     }
 
 BOOST_AUTO_TEST_SUITE_END()

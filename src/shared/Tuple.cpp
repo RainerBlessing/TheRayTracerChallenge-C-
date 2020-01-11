@@ -38,7 +38,7 @@ Tuple Tuple::divide(double d) {
 
 Tuple::Tuple() :Tuple(4){}
 
-Tuple::Tuple(int i) {
+Tuple::Tuple(int i) : Tuple(0, 0, 0, 0) {
 
 }
 

@@ -4,6 +4,7 @@
 
 #include "Matrix.h"
 #include "Tuple.h"
+#include "Output.h"
 
 Matrix::Matrix(int n, int i) {
     m.assign(n, Tuple(i));
@@ -17,7 +18,11 @@ bool Matrix::equals(Matrix n) const {
         return false;
 
     for (std::vector<int>::size_type i = 0; i != m.size(); i++) {
-        if (m[i] != n[i]){
+        if (m[i] != n[i]) {
+            std::cout << "m n" << std::endl;
+            std::cout << m[i] << std::endl;
+            std::cout << n[i] << std::endl;
+            std::cout << "------" << std::endl;
             return false;
         }
     }
@@ -81,12 +86,8 @@ Matrix Matrix::transpose() {
 
     for (std::vector<int>::size_type i = 0; i < 4; i++) {
         for (std::vector<int>::size_type j = 0; j < 4; j++) {
-            c[i][j] = 0;
-            for (std::vector<int>::size_type k = 0; k < 4; k++) {
-                c[i][j] = m[i][k];
-            }
+            c[i][j] = m[j][i];
         }
-
     }
 
     return c;
